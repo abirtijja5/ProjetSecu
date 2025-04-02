@@ -6,7 +6,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { AuthProvider } from './context/useAuth';
 
 import Login from './routes/login';
-import Menu from './routes/menu';
+import Produits from './routes/produits';
 import Register from './routes/register';
 
 import Layout from './components/layout';
@@ -18,7 +18,7 @@ function App() {
         <Router>
           <AuthProvider>
               <Routes>
-                <Route element={<PrivateRoute><Layout><Menu /></Layout></PrivateRoute>} path='/' /> 
+                <Route element={<PrivateRoute><Layout><Produits /></Layout></PrivateRoute>} path='/' /> 
                 <Route element={<Layout><Login /></Layout>} path='/login' /> 
                 <Route element={<Layout><Register /></Layout>} path='/register' /> 
               </Routes>

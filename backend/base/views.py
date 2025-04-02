@@ -6,8 +6,8 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework_simplejwt.token_blacklist.models import BlacklistedToken, OutstandingToken
 
-from .models import Todo
-from .serializers import TodoSerializer, UserRegisterSerializer, UserSerializer
+from .models import Produit
+from .serializers import ProduitSerializer, UserRegisterSerializer, UserSerializer
 
 from datetime import datetime, timedelta
 
@@ -110,10 +110,10 @@ def logout(request):
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def get_todos(request):
+def get_produits(request):
     user = request.user
-    todos = Todo.objects.filter(owner=user)
-    serializer = TodoSerializer(todos, many=True)
+    produits = Produit.objects.filter(owner=user)
+    serializer = ProduitSerializer(produits, many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])

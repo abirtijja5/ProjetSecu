@@ -5,7 +5,8 @@ const BASE_URL = 'http://127.0.0.1:8000/api/'
 const LOGIN_URL = `${BASE_URL}login/`
 const REGISTER_URL = `${BASE_URL}register/`
 const LOGOUT_URL = `${BASE_URL}logout/`
-const NOTES_URL = `${BASE_URL}todos/`
+const NOTES_URL = `${BASE_URL}produits/`
+const Commandeommande_URL = `${BASE_URL}commande/`
 const AUTHENTICATED_URL = `${BASE_URL}authenticated/`
 
 axios.defaults.withCredentials = true; 
@@ -26,8 +27,13 @@ export const login = async (username, password) => {
     }
 };
 
-export const get_notes = async () => {
+export const get_produits = async () => {
     const response = await axios.get(NOTES_URL, { withCredentials: true });
+    return response.data;
+};
+
+export const get_commandes = async () => {
+    const response = await axios.get(Commandeommande_URL, { withCredentials: true });
     return response.data;
 };
 

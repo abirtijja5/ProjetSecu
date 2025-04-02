@@ -2,7 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from .models import Todo
+from .models import Produit
 
 
 class UserRegisterSerializer(serializers.ModelSerializer):
@@ -26,7 +26,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['username']
 
-class TodoSerializer(serializers.ModelSerializer):
+class ProduitSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Todo
-        fields = ['id', 'name', 'completed']
+        model = Produit
+        fields = ['id', 'name', 'description', 'price', 'owner', 'created_at']
