@@ -10,6 +10,8 @@ import {
 import { FaShoppingCart, FaPlus, FaMinus, FaTrash } from "react-icons/fa";
 import { get_produits } from "../api/endpoints";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/useAuth"
+import { FiLogOut, FiBookOpen } from "react-icons/fi"
 
 const Produits = () => {
   const [produits, setProduits] = useState([]);
@@ -18,6 +20,7 @@ const Produits = () => {
   const toast = useToast();
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { user, logoutUser } = useAuth()
 
   useEffect(() => {
     const fetchProduits = async () => {
@@ -39,7 +42,9 @@ const Produits = () => {
     };
     fetchProduits();
   }, []);
-
+  const handleLogout = async () => {
+    await logoutUser()
+  }
   const ajouterAuPanier = (produit) => {
     setPanier(prev => {
       const existeDeja = prev.find(item => item.id === produit.id);
@@ -89,6 +94,14 @@ const Produits = () => {
   return (
     <Box minHeight="100vh" p={{ base: 4, md: 8 }} bg="gray.50">
       <Flex justify="space-between" align="center" mb={8}>
+      <IconButton
+            icon={<FiLogOut />}
+            aria-label="Logout"
+            onClick={handleLogout}
+            colorScheme="red"
+            variant="outline"
+            size="lg"
+          />
         <Heading as="h1" size="xl" color="teal.600">Nos Produits</Heading>
         <Button 
           leftIcon={<FaShoppingCart />} 
@@ -110,6 +123,7 @@ const Produits = () => {
             </Badge>
           )}
         </Button>
+     
       </Flex>
 
       {isLoading ? (
