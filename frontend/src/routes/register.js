@@ -73,7 +73,7 @@ import {
         setIsLoading(true)
         setError('')
         await registerUser(formData.username, formData.email, formData.password, formData.passwordConfirm)
-        navigate('/dashboard') // Redirect after successful registration
+        navigate('/') 
       } catch (err) {
         setError(err.message || 'Registration failed. Please try again.')
       } finally {
